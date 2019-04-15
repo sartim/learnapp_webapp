@@ -41,6 +41,11 @@ React Shop Admin Dashboard. Content management system for managing an online sho
 
 ###### Login Credentials
 
-email: `demo@mail.com`
+email: `demolearner@mail.com`
+
+password: `qwertytrewq`
+
+
+email: `demotutor@mail.com`
 
 password: `qwertytrewq`
