@@ -92,21 +92,11 @@ class SideNav extends Component {
               </li>
               <li className="no-padding">
                 <ul className="collapsible" data-collapsible="accordion">
-                  <li className="bold">
-                    <a className="collapsible-header waves-effect waves-cyan">
-                      <i className="material-icons">dashboard</i>
-                      <span className="nav-text">Dashboard</span>
-                    </a>
-                    <div className="collapsible-body">
-                      <ul>
-                        <li className="active">
-                          <Link to="/">
-                            <i className="material-icons">keyboard_arrow_right</i>
-                              <span>Orders</span>
-                            </Link>
-                        </li>
-                      </ul>
-                    </div>
+                  <li>
+                    <Link to="/">
+                        <i className="material-icons">dashboard</i>
+                        <span className="nav-text">Dashboard</span>
+                    </Link>
                   </li>
                   <li className="bold">
                     <a className="collapsible-header  waves-effect waves-cyan">
