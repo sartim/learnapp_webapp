@@ -53,6 +53,11 @@ class LoginPage extends React.Component {
             <div className="row">
                 <div className="col s12 z-depth-4 card-panel">
                   <form className="login-form" name="form" onSubmit={this.handleSubmit}>
+                      <div class="row">
+                          <div class="input-field col s12 center">
+                              <p class="center login-form-text">SIGN IN</p>
+                          </div>
+                      </div>
                       <div className="row margin">
                         <div className={'input-field col s12' + (submitted && !email ? ' has-error' : '')}>
                           <i className="material-icons prefix pt-2">person_outline</i>
