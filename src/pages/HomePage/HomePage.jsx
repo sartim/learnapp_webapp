@@ -118,6 +118,69 @@ class HomePage extends React.Component {
                 this.setState({online_users: data});
             }
         }.bind(this));
+
+        this.renderPerformanceChart();
+    }
+
+    renderPerformanceChart() {
+        const data = [{
+            "category": "Programming",
+            "average": 501.9
+        }, {
+            "category": "SQL",
+            "average": 301.9
+        }, {
+            "category": "Software Development",
+            "average": 201.1
+        }, {
+            "category": "Algorithms",
+            "average": 165.8
+        }, {
+            "category": "Networking",
+            "average": 139.9
+        }, {
+            "category": "Data Science",
+            "average": 128.3
+        }];
+        this.renderXYChart('category', 'Category', 'average', 'Average',data)
+    }
+
+    renderXYChart(category_axis, category_axis_txt, value_axis, value_axis_txt, data) {
+        let chart = am4core.create("chartdiv", am4charts.XYChart);
+
+        chart.paddingRight = 20;
+
+        chart.data = data;
+
+        let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = category_axis;
+        categoryAxis.title.text = category_axis_txt;
+
+        let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.title.text = value_axis_txt;
+
+        let series = chart.series.push(new am4charts.ColumnSeries());
+        series.dataFields.valueY = value_axis;
+        series.dataFields.categoryX = category_axis;
+        series.name = value_axis_txt;
+        // series.columns.template.tooltipText = "Series: {name}\nCategory: {categoryX}\nValue: {valueY}";
+        series.columns.template.fill = am4core.color("#03a9f4"); // fill
+        series.dataFields.valueY = value_axis;
+        series.dataFields.categoryX = category_axis;
+
+        this.chart = chart;
+    }
+
+    componentDidUpdate(oldProps) {
+        if (oldProps.paddingRight !== this.props.paddingRight) {
+            this.chart.paddingRight = this.props.paddingRight;
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.chart) {
+            this.chart.dispose();
+        }
     }
 
 
@@ -166,11 +229,57 @@ class HomePage extends React.Component {
                                   </div>
                                 </div>
                             </div>
+                            <div className="row">
+                                <div className="card-panel z-depth-4">
+                                    <div className="card-title">
+                                        <h5>Category Average Performance</h5>
+                                    </div>
+                                    <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 ;
             } if (r === 'LEARNER') {
-                view = '';
+                view =
+                    <div className="container">
+                        <div id="card-stats">
+                            <div className="row">
+                                <div className="col s12 m6 l4">
+                                    <div className="card">
+                                        <div className="card-content light-blue white-text">
+                                            <p className="card-stats-title" style={{'fontSize': '12px'}}>Selected Quizzes</p>
+                                            <h4 className="card-stats-number">5</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col s12 m6 l4">
+                                    <div className="card">
+                                        <div className="card-content light-blue lighten-1 white-text">
+                                            <p className="card-stats-title" style={{'fontSize': '12px'}}>Completed Quizzes</p>
+                                            <h4 className="card-stats-number">3</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col s12 m6 l4">
+                                    <div className="card">
+                                        <div className="card-content light-blue white-text">
+                                            <p className="card-stats-title" style={{'fontSize': '12px'}}>Passed Quizzes</p>
+                                            <h4 className="card-stats-number">3</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="card-panel z-depth-4">
+                                <div className="card-title">
+                                    Category Average Performance
+                                </div>
+                                <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
+                            </div>
+                        </div>
+                    </div>;
             }
         }
 
