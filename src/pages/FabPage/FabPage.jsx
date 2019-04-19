@@ -16,7 +16,6 @@ class FabPage extends React.Component {
 
     render() {
         let account = this.state.account;
-        let user_name;
         let roles;
         let add_quiz;
         if (account) {
