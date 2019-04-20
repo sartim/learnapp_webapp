@@ -31,6 +31,12 @@ class SideNav extends Component {
                 quizzes_nav_view =
                     <ul>
                         <li>
+                            <Link to="/quiz/create">
+                                <i className="material-icons">keyboard_arrow_right</i>
+                                <span>Create Quiz</span>
+                            </Link>
+                        </li>
+                        <li>
                             <Link to="/quiz/list">
                                 <i className="material-icons">keyboard_arrow_right</i>
                                 <span>List Quizzes</span>
