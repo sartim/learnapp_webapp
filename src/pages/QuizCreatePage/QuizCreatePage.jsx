@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import SideNav from '../SideNavPage/SideNavPage'
+import SideNav from '../SideNavPage/SideNavPage';
 import Header from '../HeaderPage/HeaderPage'
-import Script from "../../_helpers/script";
-import {Link} from "react-router-dom";
-import {BreadCrumbPage} from "../BreadCrumbPage";
-import {quizActions} from "../../_actions";
+import Script from '../../_helpers/script';
+import {Link} from 'react-router-dom';
+import {BreadCrumbPage} from '../BreadCrumbPage';
+import {quizActions} from '../../_actions';
 
 class QuizCreatePage extends React.Component {
 
@@ -15,11 +15,14 @@ class QuizCreatePage extends React.Component {
             name: "",
             description: "",
             video_url: "",
-            needs_invite: "",
+            needs_invite: false,
             time_to_take: "",
-            submitted: false
+            submitted: false,
+            section_id: 1,
+            checked: ""
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleInviteClick = this.handleInviteClick.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentDidMount() {
@@ -31,17 +34,24 @@ class QuizCreatePage extends React.Component {
         Script.custom();
     }
 
+    handleInviteClick() {
+        if (this.state.checked === 'checked') {
+            this.setState({needs_invite: false, checked: ''});
+        } else {
+            this.setState({needs_invite: true, checked: 'checked'});
+        }
+    }
+
     handleChange(e) {
         const { name, value } = e.target;
         this.setState({ [name]: value });
-        console.log(this.state)
     }
 
     handleSubmit(e) {
         e.preventDefault();
 
         this.setState({ submitted: true });
-        const { name, description, video_url, needs_invite, time_to_take } = this.state;
+        const { name, description} = this.state;
         const { dispatch } = this.props;
         if (name && description) {
             dispatch(quizActions.create(this.state));
@@ -50,7 +60,7 @@ class QuizCreatePage extends React.Component {
 
     render() {
         const { } = this.props;
-        const { name, description, video_url, needs_invite, time_to_take, submitted } = this.state;
+        const { name, description, video_url, time_to_take, checked, submitted } = this.state;
 
         const breadcrumbs = <Link to="/" className="breadcrumb">Create</Link>;
 
@@ -102,18 +112,21 @@ class QuizCreatePage extends React.Component {
                                             <label htmlFor="video_url">Video Url</label>
                                         </div>
                                       </div>
-                                      {/*<div className="row margin">*/}
-                                        {/*<div className={'input-field col s12'}>*/}
-                                            {/*<input type="checkbox" name="needs_invite" value={needs_invite} onChange={this.handleChange}/>*/}
-                                            {/*<label htmlFor="needs_invite">Needs invite</label>*/}
-                                        {/*</div>*/}
-                                      {/*</div>*/}
                                       <div className="row margin">
                                         <div className={'input-field col s12'}>
                                             <input type="text" name="time_to_take" value={time_to_take} onChange={this.handleChange}/>
                                             <label htmlFor="email">Time To Take</label>
                                         </div>
                                       </div>
+                                      <div className="row margin">
+                                        <div className={'input-field col s12'}>
+                                            <label htmlFor="needs_invite">
+                                                <input id="needs_invite" name="needs_invite" type="checkbox" className="filled-in" onClick={this.handleInviteClick} checked={checked} />
+                                                <span>Needs invite</span>
+                                            </label>
+                                        </div>
+                                      </div>
+                                        <p>&nbsp;</p>
                                       <div className="row">
                                         <div className="input-field col s12">
                                             <button className="btn col s12">Save</button>
