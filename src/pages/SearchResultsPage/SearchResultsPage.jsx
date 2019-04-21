@@ -28,7 +28,7 @@ class SearchResultsPage extends React.Component {
     }
 
     getArticleDetail (id) {
-        this.props.history.push('/article/'+id+'/detail');
+        this.props.history.push('/quiz/'+id+'/manage');
     }
 
     getUserDetail (id) {
@@ -51,7 +51,7 @@ class SearchResultsPage extends React.Component {
                         <div>
                         {all_results.map((result, index) =>
                             <div key={result.id}>
-                                {type === 'article' ?
+                                {type === 'quiz' ?
                                     (
                                         <div className="card horizontal">
                                             <div className="card-image">
@@ -67,7 +67,7 @@ class SearchResultsPage extends React.Component {
                                             </div>
                                             <div className="card-stacked">
                                               <div className="card-content">
-                                                <p>{result.title}</p>
+                                                <p>{result.name}</p>
                                               </div>
                                               <div className="card-action">
                                                 <button className="btn btn-block right" onClick={() => this.getArticleDetail(result.id)}>View</button>
@@ -91,7 +91,7 @@ class SearchResultsPage extends React.Component {
                                             </div>
                                             <div className="card-stacked">
                                               <div className="card-content">
-                                                <p>{result.name}</p>
+                                                <p>{result.full_name}</p>
                                               </div>
                                               <div className="card-action">
                                                 <button className="btn btn-block right" onClick={() => this.getUserDetail(result.id)}>View</button>
