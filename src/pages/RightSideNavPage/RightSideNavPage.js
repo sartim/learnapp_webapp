@@ -9,7 +9,6 @@ class RightSideNavPage extends React.Component {
 
     componentDidMount() {
         // Load sidenav scripts
-        Script.maximizeSideNav();
         Script.tabs();
     }
 
