@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from "../HeaderPage/HeaderPage";
 import {FabPage} from "../FabPage";
-import SideNav from "../SideNavPage/SideNavPage";
+import LeftSideNavPage from "../LeftSideNavPage/LeftSideNavPage";
 import Script from "../../_helpers/script";
 
 class ProfileVieWPage extends React.Component {
@@ -24,7 +24,7 @@ class ProfileVieWPage extends React.Component {
                     </div>
                   </div>
                 </nav>
-                <SideNav />
+                <LeftSideNavPage />
                 <section id="content">
                   <div className="container">
 

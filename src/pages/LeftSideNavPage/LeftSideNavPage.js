@@ -2,19 +2,21 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import Script from "../../_helpers/script";
 
-class SideNav extends Component {
+class LeftSideNav extends Component {
     constructor(props) {
         super(props);
         this.state = {account: ''}
     }
 
     componentDidMount() {
-        // Load sidenav scripts
-        Script.maximizeSideNav();
-
         let account = JSON.parse(localStorage.getItem('user'));
-        this.setState({account: account})
+        this.setState({account: account});
 
+        if (Script.decrypt(account.user.roles).includes('LEARNER')){
+            // Load side nave minimized
+            document.getElementById('left-sidebar-nav').classList.toggle('nav-collapsed');
+            document.getElementById('main').classList.toggle('main-full');
+        }
     }
 
     render() {
@@ -143,4 +145,4 @@ class SideNav extends Component {
     }
 }
 
-export default SideNav;
+export default LeftSideNav;
