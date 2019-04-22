@@ -8,12 +8,16 @@ import Link from "react-router-dom/es/Link";
 import {BreadCrumbPage} from "../BreadCrumbPage";
 import {quizActions} from "../../_actions";
 import {HorizontalLoader} from "../LoaderPage/HorizontalLoader";
+import StarRatingComponent from 'react-star-rating-component';
+
 
 class QuizPortalPage extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            rating: 1
+        };
     }
     componentDidMount() {
         // Add important scripts for layout
@@ -28,42 +32,61 @@ class QuizPortalPage extends React.Component {
         this.props.history.push(`/quiz/${id}/view`)
     }
 
+    onStarClick(nextValue, prevValue, name) {
+        this.setState({rating: nextValue});
+    }
+
     render() {
         const { quizzes } = this.props;
+        const { rating } = this.state;
+
         const breadcrumbs = <Link to="/quiz/list" className="breadcrumb">Quiz List</Link>;
         let results;
         let all_quizzes;
         if (quizzes.items) {
             all_quizzes = quizzes.items.results;
             results = (
-                <table className="responsive-table striped highlight">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>NAME</th>
-                        <th>CREATOR</th>
-                        <th>CREATED DATE</th>
-                        <th>ACTION</th>
-                      </tr>
-                    </thead>
-                    { all_quizzes &&
-                    <tbody>
-                        { all_quizzes.map((quiz, index) =>
-                        <tr key={ quiz.id }>
-                          <td>{ quiz.id }</td>
-                          <td>{ quiz.name }</td>
-                          <td>{ quiz.creator }</td>
-                          <td>{ quiz.created_date }</td>
-                          <td style={{display: 'flex'}}>
-                              <button className="btn" onClick={() => this.viewQuiz(quiz.id)}>
-                                  <i className="material-icons">remove_red_eye</i>
-                                </button>
-                          </td>
-                        </tr>
-                        )}
-                    </tbody>
-                    }
-                  </table>
+                <div className="row">
+                    <div className="col s8">
+                        <div className="card-panel">
+                            <ul>
+                                { all_quizzes &&
+                                <li>
+                                    { all_quizzes.map((quiz, index) =>
+                                        <div key={ quiz.id }>
+                                            <div className="row">
+                                                <div className="col s3">
+                                                    <img src="https://tru-vue.com/wp-content/uploads/2015/11/video-icon.jpg"
+                                                         className="responsive" style={{height: '110px', width: '100px'}}/>
+                                                </div>
+                                                <div className="col s9">
+                                                    <h5>{ quiz.name }</h5>
+                                                    <div style={{display: 'flex'}}>
+                                                        <div className="padding-1">{ quiz.creator }  </div>
+                                                        <div className="padding-1">{ quiz.created_date } </div>
+                                                    </div>
+                                                    <StarRatingComponent
+                                                        name={quiz.id}
+                                                        starCount={5}
+                                                        value={rating}
+                                                        onStarClick={this.onStarClick.bind(this)}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+                                </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="col s4">
+                        <div className="card-panel">
+
+                        </div>
+                    </div>
+                </div>
+
             )
         } else {
             results = (<HorizontalLoader />)
@@ -80,9 +103,37 @@ class QuizPortalPage extends React.Component {
                   <section id="content">
                     <div className="container">
                       <div className="section">
-                        <div className="col s12">
-                            {results}
-                        </div>
+                          <div className="row">
+                              <div className="col s3">
+                                  <div className="card-panel">
+                                      <div className="card-title">
+                                          PROGRAMMING
+                                      </div>
+                                  </div>
+                              </div>
+                              <div className="col s3">
+                                  <div className="card-panel">
+                                      SOFTWARE DEVELOPMENT
+                                  </div>
+                              </div>
+                              <div className="col s3">
+                                  <div className="card-panel">
+                                      <div className="card-title">
+                                          DATA SCIENCE
+                                      </div>
+                                  </div>
+                              </div>
+                              <div className="col s3">
+                                  <div className="card-panel">
+                                      INFORMATION SECURITY
+                                  </div>
+                              </div>
+                          </div>
+                          <div className="row">
+                              <div className="col s12">
+                                  {results}
+                              </div>
+                          </div>
                       </div>
                     </div>
                   </section>
