@@ -82,14 +82,12 @@ export default class Script {
     }
 
     static maximizeSideNav(e) {
-        // e.preventDefault();
-        // document.getElementById('left-sidebar-nav').classList.toggle('nav-expanded');
+        document.getElementById('left-sidebar-nav').classList.remove('nav-collapsed');
+        document.getElementById('left-sidebar-nav').classList.toggle('nav-expanded');
     }
 
     static minimizeSideNav(e) {
-        e.preventDefault();
         document.getElementById('left-sidebar-nav').classList.toggle('nav-collapsed');
-        document.getElementById('main').classList.toggle('main-full');
     }
 
     static tabs() {
