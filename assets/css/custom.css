@@ -184,6 +184,10 @@ li.side-user-info:hover {
 .line-height-0 {
   font-size: 14px;
 }
+.brand-sidebar .logo-wrapper a.brand-logo img {
+    height: 35px !important;
+    width: 45px !important;
+}
 .dropdown-content-header-override {
     width: 290px !important;
 }
