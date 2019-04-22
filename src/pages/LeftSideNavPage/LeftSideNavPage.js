@@ -20,11 +20,11 @@ class LeftSideNav extends Component {
     }
 
     maximizeNav() {
-        Script.maximizeSideNav()
+        Script.maximizeSideNav();
     }
 
     minimizeNav() {
-        Script.minimizeSideNav()
+        Script.minimizeSideNav();
     }
 
     render() {
@@ -71,7 +71,6 @@ class LeftSideNav extends Component {
                         </li>
                     </ul>
             }
-
             if (roles.includes('LEARNER')) {
                 quizzes_nav_view =
                     <ul>
