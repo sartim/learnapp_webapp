@@ -191,3 +191,6 @@ li.side-user-info:hover {
 .dropdown-content-header-override {
     width: 290px !important;
 }
+.hover-item:hover {
+    background: #f7f7f7;
+}
