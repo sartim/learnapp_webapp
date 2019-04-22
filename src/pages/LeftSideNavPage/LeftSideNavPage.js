@@ -5,23 +5,30 @@ import Script from "../../_helpers/script";
 class LeftSideNav extends Component {
     constructor(props) {
         super(props);
-        this.state = {account: ''}
+        this.state = {account: ''};
+
+        this.maximizeNav = this.maximizeNav.bind(this);
+        this.minimizeNav = this.minimizeNav.bind(this);
     }
 
     componentDidMount() {
+        document.getElementById('left-sidebar-nav').classList.toggle('nav-collapsed');
+        document.getElementById('main').classList.toggle('main-full');
+
         let account = JSON.parse(localStorage.getItem('user'));
         this.setState({account: account});
+    }
 
-        if (Script.decrypt(account.user.roles).includes('LEARNER')){
-            // Load side nave minimized
-            document.getElementById('left-sidebar-nav').classList.toggle('nav-collapsed');
-            document.getElementById('main').classList.toggle('main-full');
-        }
+    maximizeNav() {
+        Script.maximizeSideNav()
+    }
+
+    minimizeNav() {
+        Script.minimizeSideNav()
     }
 
     render() {
         let account = this.state.account;
-
         let user_name;
         let roles;
         let quizzes_nav_view;
@@ -78,11 +85,11 @@ class LeftSideNav extends Component {
             }
         }
         return (
-          <aside id="left-sidebar-nav" className="nav-expanded nav-lock nav-collapsible">
+          <aside id="left-sidebar-nav" className="nav-expanded nav-lock nav-collapsible" onMouseMove={this.maximizeNav} onMouseOver={this.maximizeNav} onMouseLeave={this.minimizeNav}>
             <div className="brand-sidebar">
               <h1 className="logo-wrapper">
                 <a href="#" className="brand-logo darken-1">
-                  {/*<img src="#" alt="ADMIN"/>*/}
+                  <img src="/assets/img/shop.png" alt="ADMIN"/>
                   <span className="logo-text hide-on-med-and-down">ADMIN</span>
                 </a>
                 <a href="#" className="navbar-toggler" onClick={Script.minimizeSideNav}>
