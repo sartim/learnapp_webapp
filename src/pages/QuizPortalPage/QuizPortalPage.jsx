@@ -48,12 +48,11 @@ class QuizPortalPage extends React.Component {
             results = (
                 <div className="row">
                     <div className="col s8">
-                        <div className="card-panel">
-                            <ul>
+                        <div className="card-panel" style={{padding: 0}}>
                                 { all_quizzes &&
-                                <li>
+                                <ul>
                                     { all_quizzes.map((quiz, index) =>
-                                        <div key={ quiz.id }>
+                                        <li key={ quiz.id } onClick={() => this.viewQuiz(quiz.id)} className="hover-item">
                                             <div className="row">
                                                 <div className="col s3">
                                                     <img src="https://tru-vue.com/wp-content/uploads/2015/11/video-icon.jpg"
@@ -73,11 +72,10 @@ class QuizPortalPage extends React.Component {
                                                     />
                                                 </div>
                                             </div>
-                                        </div>
+                                        </li>
                                     )}
-                                </li>
+                                </ul>
                                 }
-                            </ul>
                         </div>
                     </div>
                     <div className="col s4">
@@ -105,26 +103,26 @@ class QuizPortalPage extends React.Component {
                       <div className="section">
                           <div className="row">
                               <div className="col s3">
-                                  <div className="card-panel">
+                                  <div className="card-panel hover-item">
                                       <div className="card-title">
                                           PROGRAMMING
                                       </div>
                                   </div>
                               </div>
                               <div className="col s3">
-                                  <div className="card-panel">
+                                  <div className="card-panel hover-item">
                                       SOFTWARE DEVELOPMENT
                                   </div>
                               </div>
                               <div className="col s3">
-                                  <div className="card-panel">
+                                  <div className="card-panel hover-item">
                                       <div className="card-title">
                                           DATA SCIENCE
                                       </div>
                                   </div>
                               </div>
                               <div className="col s3">
-                                  <div className="card-panel">
+                                  <div className="card-panel hover-item">
                                       INFORMATION SECURITY
                                   </div>
                               </div>
