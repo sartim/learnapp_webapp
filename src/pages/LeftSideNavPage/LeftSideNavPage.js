@@ -88,7 +88,7 @@ class LeftSideNav extends Component {
             <div className="brand-sidebar">
               <h1 className="logo-wrapper">
                 <a href="#" className="brand-logo darken-1">
-                  <img src="/assets/img/shop.png" alt="ADMIN"/>
+                  <img src="/assets/img/emc2.png" alt="ADMIN"/>
                   <span className="logo-text hide-on-med-and-down">ADMIN</span>
                 </a>
                 <a href="#" className="navbar-toggler" onClick={Script.minimizeSideNav}>
